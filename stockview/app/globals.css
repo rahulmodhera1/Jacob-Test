@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Warm-neutral light theme */
+  --bg: #faf9f7;
+  --surface: #ffffff;
+  --surface-2: #f3f1ed;
+  --ink: #1a1a1a;
+  --ink-2: #52504b;
+  --ink-3: #79756e;
+  --line: #e9e6e0;
+  --line-2: #d9d5cd;
+  --gain: #0f7a55;
+  --gain-bg: #e7f1ec;
+  --loss: #b04a31;
+  --loss-bg: #f7ebe6;
+  --chart-gain: #189d71;
+  --chart-loss: #d4694c;
+  --focus: #1a1a1a;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.dark {
+  /* Warm, soft dark theme — never pure black */
+  --bg: #191714;
+  --surface: #211f1b;
+  --surface-2: #2a2723;
+  --ink: #f1eee9;
+  --ink-2: #b8b3ab;
+  --ink-3: #8d887f;
+  --line: #322f2a;
+  --line-2: #403c35;
+  --gain: #63c79a;
+  --gain-bg: #1f2b25;
+  --loss: #e6906f;
+  --loss-bg: #322420;
+  --chart-gain: #4db98c;
+  --chart-loss: #d97a58;
+  --focus: #f1eee9;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-line-2: var(--line-2);
+  --color-gain: var(--gain);
+  --color-gain-bg: var(--gain-bg);
+  --color-loss: var(--loss);
+  --color-loss-bg: var(--loss-bg);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "cv11";
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Numbers line up in tables and tickers */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Pressable feedback: the interface confirms it heard you */
+.pressable {
+  transition:
+    transform 160ms var(--ease-out),
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.pressable:active {
+  transform: scale(0.97);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  transition:
+    border-color 200ms ease,
+    transform 200ms var(--ease-out);
+}
+
+a.card:hover {
+  border-color: var(--line-2);
+  transform: translateY(-2px);
+}
+
+/* Entrance enhances an already-visible default */
+@media (prefers-reduced-motion: no-preference) {
+  .rise {
+    animation: rise 500ms var(--ease-out) backwards;
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+  }
+}
+
+.skeleton {
+  background: var(--surface-2);
+  border-radius: 8px;
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+
+  .pressable,
+  a.card {
+    transition: none;
+  }
+}

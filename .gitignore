@@ -1,0 +1,3 @@
+# Skills are restored from skills-lock.json via `npx skills install`
+.agents/skills/
+.claude/
