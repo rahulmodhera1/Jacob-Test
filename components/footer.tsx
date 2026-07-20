@@ -3,7 +3,7 @@ import { isLiveData } from "@/lib/market";
 export function Footer() {
   return (
     <footer className="border-t border-line">
-      <div className="mx-auto w-full max-w-5xl px-5 py-6 text-sm text-ink-3 sm:px-8">
+      <div className="mx-auto w-full max-w-5xl px-5 py-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] text-sm text-ink-3 sm:px-8">
         <p>
           {isLiveData
             ? "Market data is delayed and for information only — not investment advice."

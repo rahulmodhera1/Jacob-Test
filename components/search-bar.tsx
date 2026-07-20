@@ -1,11 +1,12 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { SearchResult } from "@/lib/types";
 
 export function SearchBar() {
   const router = useRouter();
+  const listboxId = useId();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchResult[]>([]);
   const [open, setOpen] = useState(false);
@@ -102,7 +103,7 @@ export function SearchBar() {
         type="text"
         role="combobox"
         aria-expanded={open}
-        aria-controls="search-results"
+        aria-controls={listboxId}
         aria-autocomplete="list"
         aria-label="Search stocks"
         placeholder="Search stocks…"
@@ -110,11 +111,15 @@ export function SearchBar() {
         onChange={(e) => onChange(e.target.value)}
         onFocus={() => results.length > 0 && setOpen(true)}
         onKeyDown={onKeyDown}
-        className="h-10 w-full rounded-full border border-line bg-surface pl-10 pr-4 text-[15px] text-ink placeholder:text-ink-3 transition-colors duration-150 hover:border-line-2 focus:border-line-2 focus:outline-none"
+        autoCapitalize="characters"
+        autoCorrect="off"
+        spellCheck={false}
+        enterKeyHint="go"
+        className="h-11 w-full rounded-full border border-line bg-surface pl-10 pr-4 text-base text-ink placeholder:text-ink-3 transition-colors duration-150 hover:border-line-2 focus:border-line-2 focus:outline-none sm:h-10 sm:text-[15px]"
       />
       {open && results.length > 0 && (
         <ul
-          id="search-results"
+          id={listboxId}
           role="listbox"
           className="absolute left-0 right-0 top-12 z-50 overflow-hidden rounded-2xl border border-line bg-surface py-1.5 shadow-lg shadow-black/5"
         >
@@ -124,7 +129,7 @@ export function SearchBar() {
                 type="button"
                 onMouseEnter={() => setActive(i)}
                 onClick={() => go(r.symbol)}
-                className={`flex w-full items-baseline gap-3 px-4 py-2.5 text-left transition-colors duration-100 ${
+                className={`flex w-full items-baseline gap-3 px-4 py-3 text-left transition-colors duration-100 sm:py-2.5 ${
                   i === active ? "bg-surface-2" : ""
                 }`}
               >

@@ -125,7 +125,7 @@ export function PriceChart({ symbol, initialRange, initialCandles }: Props) {
             role="tab"
             aria-selected={range === r}
             onClick={() => selectRange(r)}
-            className={`pressable rounded-full px-3.5 py-1.5 text-[13px] font-medium ${
+            className={`pressable rounded-full px-3.5 py-2.5 text-[13px] font-medium sm:py-1.5 ${
               range === r ? "bg-ink text-bg" : "text-ink-2 hover:text-ink"
             }`}
           >

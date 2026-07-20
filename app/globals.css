@@ -60,6 +60,9 @@
 
 html {
   color-scheme: light;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html.dark {
@@ -72,6 +75,14 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   font-feature-settings: "cv11";
+  /* Keep content clear of the notch in landscape (viewport-fit=cover) */
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+button,
+a {
+  touch-action: manipulation;
 }
 
 h1,
@@ -118,9 +129,16 @@ h3 {
     transform 200ms var(--ease-out);
 }
 
-a.card:hover {
-  border-color: var(--line-2);
-  transform: translateY(-2px);
+/* Hover lift only on devices that actually hover — taps on iOS otherwise leave cards stuck raised */
+@media (hover: hover) and (pointer: fine) {
+  a.card:hover {
+    border-color: var(--line-2);
+    transform: translateY(-2px);
+  }
+}
+
+a.card:active {
+  transform: scale(0.99);
 }
 
 /* Entrance enhances an already-visible default */
@@ -157,5 +175,10 @@ a.card:hover {
   .pressable,
   a.card {
     transition: none;
+  }
+
+  .pressable:active,
+  a.card:active {
+    transform: none;
   }
 }

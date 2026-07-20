@@ -12,7 +12,7 @@ export function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label="Toggle color theme"
-      className="pressable flex size-9 items-center justify-center rounded-full border border-line text-ink-2 hover:bg-surface-2"
+      className="pressable flex size-10 items-center justify-center rounded-full border border-line text-ink-2 hover:bg-surface-2 sm:size-9"
     >
       {/* Both icons render; CSS shows the right one so SSR never mismatches */}
       <svg

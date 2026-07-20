@@ -4,8 +4,8 @@ import { ThemeToggle } from "./theme-toggle";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-bg/90 backdrop-blur-sm">
-      <div className="mx-auto flex w-full max-w-5xl items-center gap-4 px-5 py-3.5 sm:px-8">
+    <header className="sticky top-0 z-40 border-b border-line bg-bg/90 pt-[env(safe-area-inset-top)] backdrop-blur-sm">
+      <div className="mx-auto flex w-full max-w-5xl flex-wrap items-center gap-x-4 gap-y-3 px-5 py-3.5 sm:px-8">
         <Link
           href="/"
           className="shrink-0 text-lg font-semibold tracking-tight"
@@ -13,15 +13,12 @@ export function Header() {
         >
           Stockview
         </Link>
-        <div className="ml-auto hidden w-full max-w-sm sm:block">
+        <div className="order-last w-full sm:order-none sm:ml-auto sm:w-auto sm:max-w-sm sm:flex-1">
           <SearchBar />
         </div>
         <div className="ml-auto sm:ml-0">
           <ThemeToggle />
         </div>
-      </div>
-      <div className="mx-auto w-full max-w-5xl px-5 pb-3 sm:hidden">
-        <SearchBar />
       </div>
     </header>
   );

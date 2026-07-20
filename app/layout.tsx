@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/header";
@@ -15,6 +15,21 @@ export const metadata: Metadata = {
     template: "%s — Stockview",
   },
   description: "A calm, simple view of the stock market. Indices, movers, and charts without the noise.",
+  appleWebApp: {
+    title: "Stockview",
+    statusBarStyle: "default",
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  // Lets the layout extend into the notch/home-indicator areas (padded via safe-area insets)
+  viewportFit: "cover",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#faf9f7" },
+    { media: "(prefers-color-scheme: dark)", color: "#191714" },
+  ],
 };
 
 // Applies the saved theme before first paint to avoid a flash of the wrong theme
