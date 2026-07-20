@@ -35,7 +35,7 @@ Open http://localhost:3000.
 ## Deploy to Vercel
 
 1. Push this repo to GitHub.
-2. In [Vercel](https://vercel.com/new), import the repo. If the app lives in a subdirectory, set **Root Directory** to `stockview`.
+2. In [Vercel](https://vercel.com/new), import the repo. The app lives at the repo root, so no Root Directory setting is needed.
 3. Framework preset: **Next.js** (auto-detected). No build settings to change.
 4. Under **Settings → Environment Variables**, add `FINNHUB_API_KEY` (and optionally `TWELVEDATA_API_KEY`) for Production and Preview.
 5. Deploy. Subsequent pushes to the default branch redeploy automatically.
